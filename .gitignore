@@ -135,6 +135,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.vscode/
 
 # Spyder project settings
 .spyderproject
@@ -169,3 +170,14 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Archivos de logs
+data/log_errores.txt
+data/log_ultima_operacion.txt
+*.log
+
+# Archivos temporales del sistema
+*.swp
+*.tmp
+.DS_Store
+Thumbs.db
