@@ -1,7 +1,7 @@
 import os
 import imagenes
 import videos
-from tqdm import tqdm
+import audio
 
 # Registros de errores y operaciones.
 LOG_ERRORES = "log_errores.txt"
@@ -10,7 +10,7 @@ LOG_OPERACIONES = "log_ultima_operacion.txt"
 EXTENSIONES = {
     "Imagenes": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp", ".svg"],
     "Videos": [".mp4", ".avi", ".mov", ".mkv", ".flv", ".wmv", ".webm"],
-    "Audio": [".mp3", ".wav", ".flac", ".aac", ".ogg"],
+    "Audio": [".mp3", ".m4a", ".wav", ".flac", ".aac", ".ogg"],
     "Documentos": [".pdf", ".docx", ".xlsx", ".txt"],
     "Otros": [".zip", ".rar", ".7z"]
 }
@@ -79,9 +79,16 @@ def iniciar_busqueda(carpeta_origen, carpeta_destino, tipo_seleccionado, extensi
         print(f"Buscando duplicados de tipo {tipo_seleccionado}...")
         duplicados = imagenes.buscar_duplicados_imagenes(carpeta_origen, extensiones_seleccionadas)
         imagenes.mover_duplicados_imagenes(duplicados, carpeta_destino, registrar_operacion)
+
     elif tipo_seleccionado == "Videos":
         print(f"Buscando duplicados de tipo {tipo_seleccionado}...")
-        videos.buscar_videos(carpeta_origen, carpeta_destino, registrar_operacion)
+        videos.buscar_videos(carpeta_origen, carpeta_destino)
+
+    elif tipo_seleccionado == "Audio":
+        print(f"Buscando duplicados de tipo {tipo_seleccionado}...")
+        duplicados_audio = audio.buscar_duplicados_audio(carpeta_origen)
+        audio.mover_duplicados_audio(duplicados_audio, carpeta_destino)
+
     else:
         print(f"Actualmente, no hay soporte avanzado para {tipo_seleccionado}.")
     print("Proceso de búsqueda completado.")
