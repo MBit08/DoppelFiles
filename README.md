@@ -5,14 +5,13 @@ Actualmente trabajando con imagenes, video y audio. Próximamente más tipos de 
 ![Banner](assets/Banner.jpg)
 
 ## Índice
-1. [Introducción](#introducción)
+1. [Introducción](#introducción) - ([Versionado](#versionado))
 2. [Instalación](#instalación)
 3. [Uso](#uso)
-4. [Problemas conocidos y soluciones](#problemas-conocidos-y-soluciones)
-5. [Estado actual](#estado-actual)
-6. [Ideas a futuro](#a-futuro)
-7. [Contribuciones](#contribuciones)
-8. [Licencia](#licencia)
+4. [Estado actual](#estado-actual) - ([Funciones](#funciones), [Problemas y soluciones](#problemas-y-soluciones))
+5. [A futuro](#a-futuro)
+6. [Contribuciones](#contribuciones)
+7. [Licencia](#licencia)
 
 ## INTRODUCCIÓN
 Trabajo con un enorme volumen de archivos y discos, muchas veces por falta de tiempo he tenido que mover documentos entre discos sin verificar si ya existián.
@@ -52,37 +51,51 @@ MAYOR.MENOR.PARCHE
 5. Inicia la búsqueda.
 Si te saltas algún paso la búsqueda no inicia y aparece un mensaje avisando del paso faltante.
 
-## PROBLEMAS CONOCIDOS Y SOLUCIONES
-### Error con OpenCV y PyLint:
+## ESTADO ACTUAL
+### Funciones
+#### Generales
+- Barra de progreso.
+- Busca en una o más carpetas definidas. Comparando todos los archivos de todas.
+- Mueve las copias a la carpeta destino seleccionada.
+- Genera un registro con la operación realizada.
+- Utiliza ese registro para permitir deshacer la última operación.
+- Genera un registro con todos los errores.
+#### Imagenes
+- **Extensiones:** ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp", ".svg"
+- Identifica todas las copias incluso si difieren en dimensiones, peso, compresión o metadatos.
+- De todas las copias selecciona y deja la de mejor calidad, mueve las demás.
+- Crea una subcarpeta "Problematicos" y mueve todos los archivos que no se pudieron procesar por un error.
+- Prevención de errores por imagenes truncadas o abiertas por otros procesos.
+#### Videos
+- **Extensiones:** ".mp4", ".avi", ".mov", ".mkv", ".flv", ".wmv", ".webm"
+- Identifica todas las copias incluso si difieren en dimensiones, peso, compresión o metadatos.
+- De todas las copias selecciona y deja la de mejor calidad, mueve las demás.
+- Crea una subcarpeta "Problematicos" y mueve todos los archivos que no se pudieron procesar por un error.
+- Cuenta con configuraciones dinámicas para el "backend" y el "intervalo de frames".
+#### Audio
+- **Extensiones:** ".mp3", ".m4a", ".wav", ".flac", ".aac", ".ogg"
+- Busca copias exactas de los archivos.
+- Discrimina entre extensiones. No va a tomar como duplicados dos archivos iguales pero en diferentes extensiones.
+#### Código (editando)
+- Se puede ajustar la sensibilidad en la identificación de imagenes y videos.
+**AVISO:** Disminuir la precisión aumenta la cantidad de copias similares que toma pero también aumentan los falsos positivos.
+### Problemas y soluciones
+#### Error con OpenCV y PyLint:
 - Mensaje: Module 'cv2' has no ...
 - Solución: Agrega el siguiente argumento en la configuración de PyLint. "python.linting.pylintArgs": ["--extension-pkg-whitelist=cv2"]
-### Error al procesar imágenes corruptas:
+#### Error al procesar imágenes corruptas:
 - Mensaje: cannot identify image file.
 - Solución: El programa ignora automáticamente las imágenes no válidas y registra los errores en "log_errores.txt"
-### Error al decodificar H.264
+#### Error al decodificar H.264
 Sigo trabajando para encontrar la solución a este problema. En una de las versiones anteriores no pasaba pero creo que sobreescribí ese archivo por accidente, así que me toca investigar de vuelta.
-### Filtro estricto
+#### Filtro estricto
 No es un problema en sí pero según como se configuré cada módulo puede ser más exigente o más permisivo en cuanto a la similitud de cada archivo. Actualmente está en un punto intermedio donde
 en las prubas no arrojó ningún falso positivo pero sí dejó varias copias similares, más no identicas, sin procesar.
-
-## ESTADO ACTUAL
-- Trabaja con archivos de tipo imagen, video y audio.
-- Busca en una o más carpetas a la vez (compara todos los archivos de todas las carpetas).
-- Mueve los duplicados a una carpeta destino seleccionada.
-- Es capaz de identificar todas las copias de un archivo incluso si difieren en tamaño, compresión o metadatos.
-- [CÓDIGO] Se puede ajustar la sensibilidad en la identificación de imagenes y videos.
-- [VIDEOS] Cuenta con configuraciones dinámicas para el "backend" y el "intervalo de frames".
-- De todas las copias selecciona y deja la de mejor calidad, mueve las demás.
-- Detecta miniaturas y las mueve a una subcarpeta dentro del destino.
-- Crea un registro para errores.
-- [VIDEOS] Crea una subcarpeta "Problematicos" y mueve todos los videos que no se pudieron procesar.
-- Crea un registro de la última operación realizada.
-- Puede deshacer la última operación realiada utilizando ese registro.
-- Muestra una barra de progreso.
 
 ## A FUTURO
 ### Módulos de procesamiento
 - Permitir configurar los parametros de análisis y procesamiento previo a ejecutar la búsqueda.
+- Procesamiento de miniaturas.
 ### General
 - Añadir módulos para el procesamiento de documentos y varios.
 - Permitir la elección de Mover, Eliminar u Omitir.
@@ -96,4 +109,4 @@ en las prubas no arrojó ningún falso positivo pero sí dejó varias copias sim
 Como dije al principio, este proyecto lo pensé originalmente para mi uso personal. Pero si a alguien le sirve y quiere modificarlo a su gusto y necesidad sientase libre de crear un fork de este repositorio.
 
 ## LICENCIA
-Este proyecto se encuentra bajo la licencia AGPL v3.0 -Hace años ya había definido que todos mis proyectos libres iban a ser con esta licencia.
+Este proyecto se encuentra bajo la licencia AGPL v3.0.
