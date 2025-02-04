@@ -7,9 +7,8 @@ from tqdm import tqdm
 LOG_ERRORES = "log_errores.txt"
 LOG_OPERACIONES = "log_ultima_operacion.txt"
 
-EXTENSIONES_DOCUMENTOS = [".txt", ".doc", ".docx", ".xls", ".xlsx", ".xlsm",
-                          ".ppt", ".pptx", ".ppsx", ".odt", ".ods", ".odp",
-                          ".pdf", ".epub", ".mobi"]
+EXTENSIONES_DOCUMENTOS = [".txt", ".doc", ".docx", ".xls", ".xlsx", ".xlsm", ".ppt", ".pptx", 
+                          ".ppsx", ".odt", ".ods", ".odp", ".pdf", ".epub", ".mobi"]
 
 # INICIO - Registro de errores y función deshacer.
 def registrar_error(ruta, mensaje):
