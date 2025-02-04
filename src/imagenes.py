@@ -1,10 +1,10 @@
 import os
-from PIL import Image, ImageChops, ImageFile
-import imagehash
-from collections import defaultdict
-from tqdm import tqdm
-import shutil
 import time
+import shutil
+import imagehash
+from tqdm import tqdm
+from PIL import Image, ImageFile
+from collections import defaultdict
 
 # Registros de errores y operaciones.
 LOG_ERRORES = "log_errores.txt"
