@@ -1,7 +1,5 @@
 import os
-import imagenes
-import videos
-import audio
+import imagenes, videos, audio, documentos, otros
 
 # Registros de errores y operaciones.
 LOG_ERRORES = "log_errores.txt"
@@ -11,8 +9,9 @@ EXTENSIONES = {
     "Imagenes": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp", ".svg"],
     "Videos": [".mp4", ".avi", ".mov", ".mkv", ".flv", ".wmv", ".webm"],
     "Audio": [".mp3", ".m4a", ".wav", ".flac", ".aac", ".ogg"],
-    "Documentos": [".pdf", ".docx", ".xlsx", ".txt"],
-    "Otros": [".zip", ".rar", ".7z"]
+    "Documentos": [".txt", ".doc", ".docx", ".xls", ".xlsx", ".xlsm", ".ppt", ".pptx", 
+                   ".ppsx", ".odt", ".ods", ".odp", ".pdf", ".epub", ".mobi"],
+    "Otros": [".zip", ".rar", ".7z", ".tar", ".gz", ".iso", ".ttf", ".otf"],
 }
 
 # INICIO - Registro de errores y función deshacer.
@@ -22,6 +21,7 @@ def registrar_operacion(original, destino):
     """
     with open(LOG_OPERACIONES, "a") as log:
         log.write(f"{original}|{destino}\n")
+
 def deshacer_ultima_operacion():
     """
     Deshace la última operación basada en el log de operaciones.
@@ -70,15 +70,15 @@ def seleccionar_tipos_archivo():
         print("Selección inválida. Intente nuevamente.")
         return None, None
 
-def iniciar_busqueda(carpeta_origen, carpeta_destino, tipo_seleccionado, extensiones_seleccionadas):
-    if not carpeta_origen or not carpeta_destino or not extensiones_seleccionadas:
+def iniciar_busqueda(carpeta_origen, carpeta_destino, tipo_seleccionado):
+    if not carpeta_origen or not carpeta_destino or not tipo_seleccionado:
         print("Debe elegir la carpeta de origen, carpeta de destino y tipo de archivo antes de iniciar la búsqueda.")
         return
 
     if tipo_seleccionado == "Imagenes":
         print(f"Buscando duplicados de tipo {tipo_seleccionado}...")
-        duplicados = imagenes.buscar_duplicados_imagenes(carpeta_origen, extensiones_seleccionadas)
-        imagenes.mover_duplicados_imagenes(duplicados, carpeta_destino, registrar_operacion)
+        duplicados_imagenes = imagenes.buscar_duplicados_imagenes(carpeta_origen)
+        imagenes.mover_duplicados_imagenes(duplicados_imagenes, carpeta_destino, registrar_operacion)
 
     elif tipo_seleccionado == "Videos":
         print(f"Buscando duplicados de tipo {tipo_seleccionado}...")
@@ -88,6 +88,16 @@ def iniciar_busqueda(carpeta_origen, carpeta_destino, tipo_seleccionado, extensi
         print(f"Buscando duplicados de tipo {tipo_seleccionado}...")
         duplicados_audio = audio.buscar_duplicados_audio(carpeta_origen)
         audio.mover_duplicados_audio(duplicados_audio, carpeta_destino)
+
+    elif tipo_seleccionado == "Documentos":
+        print(f"Buscando duplicados de tipo {tipo_seleccionado}...")
+        duplicados_documentos = documentos.buscar_duplicados_documentos(carpeta_origen)
+        documentos.mover_duplicados_documentos(duplicados_documentos, carpeta_destino, registrar_operacion)
+
+    elif tipo_seleccionado == "Otros":
+        print(f"Buscando duplicados de tipo {tipo_seleccionado}...")
+        duplicados_otros = otros.buscar_duplicados_otros(carpeta_origen)
+        otros.mover_duplicados_otros(duplicados_otros, carpeta_destino, registrar_operacion)
 
     else:
         print(f"Actualmente, no hay soporte avanzado para {tipo_seleccionado}.")
@@ -111,7 +121,6 @@ def main():
     carpeta_origen = None
     carpeta_destino = None
     tipo_seleccionado = None
-    extensiones_seleccionadas = None
 
     while True:
         opcion = menu_principal()
@@ -138,7 +147,7 @@ def main():
                     print(f"Extensiones: {', '.join(extensiones_seleccionadas)}")
 
             case "4":
-                iniciar_busqueda(carpeta_origen, carpeta_destino, tipo_seleccionado, extensiones_seleccionadas)
+                iniciar_busqueda(carpeta_origen, carpeta_destino, tipo_seleccionado)
 
             case "5":
                 deshacer_ultima_operacion()
