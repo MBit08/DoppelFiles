@@ -23,16 +23,10 @@ En mi inocencia creí que iba a ser algo pequeño y simple, al final resultó un
 por si a alguien más le servía de ayuda o inspiración.
 
 ### Versionado
-Si bien existen estandares ya establecidos, para este programa en esta estapa prefiero usar mi propio esquema que es el siguiente:
+Al final vi que no tenía sentido mi idea original así que decidí terminar el programa y tener una versión completa básica para pasar a usar el versionado clásico directamente
 ~~~
-Menú-Imagenes.Videos.Audio.Documentos.Otros
+MAYOR.MENOR.PARCHE # Al momento de publicar este cambio sería la v1.0.0
 ~~~
-Por ejemplo actualmente sería v2-2.2.1.0.0, marcando así la versión de cada módulo.
-Esto sería solo para la edición de consola, la versión gráfica (planeada para cuando todo esté completo) si va a seguir el estandar:
-~~~
-MAYOR.MENOR.PARCHE
-~~~
-
 ## INSTALACIÓN
 ### Requisitos previos
 1. Python 3.9 o superior.
@@ -76,9 +70,18 @@ Si te saltas algún paso la búsqueda no inicia y aparece un mensaje avisando de
 - **Extensiones:** ".mp3", ".m4a", ".wav", ".flac", ".aac", ".ogg"
 - Busca copias exactas de los archivos.
 - Discrimina entre extensiones. No va a tomar como duplicados dos archivos iguales pero en diferentes extensiones.
+#### Documentos
+- **Extensiones:** ".txt", ".doc", ".docx", ".xls", ".xlsx", ".xlsm", ".ppt", ".pptx", ".ppsx", ".odt", ".ods", ".odp", ".pdf", ".epub", ".mobi"
+- Busca copias exactas de los archivos.
+- Discrimina entre extensiones. No va a tomar como duplicados dos archivos iguales pero en diferentes extensiones.
+#### Otros
+- **Extensiones:** ".zip", ".rar", ".7z", ".tar", ".gz", ".iso", ".ttf", ".otf"
+- Busca copias exactas de los archivos.
+- Discrimina entre extensiones. No va a tomar como duplicados dos archivos iguales pero en diferentes extensiones.
 #### Código (editando)
 - Se puede ajustar la sensibilidad en la identificación de imagenes y videos.
 **AVISO:** Disminuir la precisión aumenta la cantidad de copias similares que toma pero también aumentan los falsos positivos.
+- - -
 ### Problemas y soluciones
 #### Error con OpenCV y PyLint:
 - Mensaje: Module 'cv2' has no ...
