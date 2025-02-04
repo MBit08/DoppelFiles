@@ -1,7 +1,7 @@
 import os
 import cv2
-from tqdm import tqdm
 import shutil
+from tqdm import tqdm
 from collections import defaultdict
 
 # Registros de errores y operaciones.
