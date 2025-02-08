@@ -1,3 +1,15 @@
+## v1.0.0 [2024-02-04]
+Nuevos módulos y correcciones menores en los anteriores.
+### Versionado
+Al final decidí cambiar de idea respecto al versionado propio. Era mejor añadir todas las funciones básicas y empezar desde la v1.0.0.
+### Main - Imagenes - Videos - Audio
+- Correciones en el código para mejorar la legibilidad.
+- Eliminación de código innecesario.
+### Documentos - Otros
+- Creación de los módulos "Documentos.py" y "Otros.py".
+### Main
+- Adición de las funciones para ejecutar "Documentos.py" y "Otros.py".
+- - -
 ## v2-2.2.1.0.0 [2024-02-02]
 Cambios menores y mayores en todos los módulos del programa.
 Gracias a estos cambios tenemos un nuevo tipo de archivo para procesar, mejoras en el manejo de erroes, reducción de los falsos positivos y mayor eficiencia en la utilización de recursos al procesar.
