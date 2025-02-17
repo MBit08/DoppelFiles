@@ -1,6 +1,6 @@
 # DoppelFiles
 Programa encargado de encontrar duplicados dentro de una o más carpetas designadas, y mover todas las copias a una carpeta destino.
-Actualmente trabajando con imagenes, video y audio. Próximamente más tipos de archivos y funciones.
+Próximamente mejoras en la usabilidad.
 
 ![Banner](assets/Banner.jpg)
 
@@ -14,7 +14,7 @@ Actualmente trabajando con imagenes, video y audio. Próximamente más tipos de 
 7. [Licencia](#licencia)
 
 ## INTRODUCCIÓN
-Trabajo con un enorme volumen de archivos y discos, muchas veces por falta de tiempo he tenido que mover documentos entre discos sin verificar si ya existián.
+Trabajo con un enorme volumen de archivos y discos, muchas veces por falta de tiempo he tenido que mover documentos entre discos sin verificar si ya existían.
 Esto a largo plazo me dejó con un desorden importante, por eso necesitaba un programa que me permitiera manejar toda esa cantidad y limpiar los duplicados.
 Entiendo que existen ya programas para esto sin embargo las mejores opciones son de pago y/o no me generan mucha confianza, en especial aquellas que utilizan llamadas a servidor.
 Siendo una razón más para crear mi propio programa.
