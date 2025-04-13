@@ -12,8 +12,10 @@ def calcular_hash_otro(ruta_otro): # Calcula un hash SHA-256 del contenido del a
     try:
         hash_sha256 = hashlib.sha256()
         with open(ruta_otro, "rb") as f:
+
             for bloque in iter(lambda: f.read(4096), b""):
                 hash_sha256.update(bloque)
+
         return hash_sha256.hexdigest()
     
     except Exception as e:
@@ -77,3 +79,4 @@ def mover_duplicados_otros(duplicados, carpeta_destino): # Mueve los archivos du
     print(Fore.LIGHTGREEN_EX + "Archivos movidos exitosamente." + Style.RESET_ALL)
 
 # FIN - Ejecución
+
